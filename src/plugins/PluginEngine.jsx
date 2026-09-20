@@ -1,14 +1,16 @@
 import { useState, useCallback } from 'react';
 import {
   FileText, Lock, Bookmark, Bot, Rss, Globe,
-  Wifi, Share2, Activity, SlidersHorizontal, Radio, Flame, PhoneCall,
+  Wifi, Share2, Activity, SlidersHorizontal, Radio, Flame, PhoneCall, LayoutTemplate, Camera,
 } from 'lucide-react';
 
 export const PLUGIN_REGISTRY = [
+  { id: 'templates',    label: 'Templates', Icon: LayoutTemplate,  slideFrom: 'top',    domain: true  },
   { id: 'controlboard', label: 'Board',   Icon: SlidersHorizontal, slideFrom: 'top',    domain: true  },
   { id: 'radio',        label: 'Radio',   Icon: Radio,             slideFrom: 'bottom', overlay: true },
   { id: 'fireside',     label: 'Fireside',Icon: Flame,             slideFrom: 'right'                 },
   { id: 'callin',       label: 'Call-in', Icon: PhoneCall,         slideFrom: 'right'                 },
+  { id: 'camera',       label: 'Camera',  Icon: Camera,            slideFrom: 'left'                  },
   { id: 'notes',        label: 'Notes',   Icon: FileText,          slideFrom: 'top',    domain: true  },
   { id: 'vault',        label: 'Vault',   Icon: Lock,              slideFrom: 'top',    domain: true  },
   { id: 'bookmarks',    label: 'Bookmarks',Icon: Bookmark,         slideFrom: 'right'                 },
@@ -32,6 +34,10 @@ export function usePluginState() {
     setOpen(prev => ({ ...prev, [id]: false }));
   }, []);
 
+  const open_ = useCallback((id) => {
+    setOpen(prev => ({ ...prev, [id]: true }));
+  }, []);
+
   const isOpen = (id) => !!open[id];
 
   const setData = useCallback((id, updater) => {
@@ -43,7 +49,7 @@ export function usePluginState() {
 
   const getData = (id) => data[id];
 
-  return { toggle, close, isOpen, setData, getData };
+  return { toggle, close, open: open_, isOpen, setData, getData };
 }
 
 export function DockBar({ pluginState }) {

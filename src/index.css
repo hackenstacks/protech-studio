@@ -739,3 +739,40 @@ body {
 .voice-preset:disabled { opacity: 0.35; cursor: not-allowed; }
 .voice-preset-on { border-color: var(--accent); color: var(--accent); box-shadow: var(--glow); }
 .fireside-intro { display: flex; gap: 8px; align-items: flex-start; padding: 9px 11px; border-radius: 8px; background: rgba(255,0,170,0.08); border: 1px solid var(--accent2); font-size: 11px; line-height: 1.5; font-style: italic; color: var(--text); }
+
+/* ── Templates ───────────────────────────────────────────────── */
+.plugin-templates { display: flex; flex-direction: column; gap: 14px; }
+.tpl-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.tpl-card { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); cursor: pointer; text-align: left; transition: all 0.15s; position: relative; }
+.tpl-card:hover { border-color: var(--border-hi); box-shadow: var(--glow); }
+.tpl-card-sel { border-color: var(--accent); box-shadow: var(--glow); }
+.tpl-card-applied { border-color: var(--accent2); }
+.tpl-icon { font-size: 26px; }
+.tpl-label { font-size: 13px; font-weight: 800; }
+.tpl-tagline { font-size: 10px; color: var(--text-dim); line-height: 1.4; }
+.tpl-badge { position: absolute; top: 8px; right: 8px; display: inline-flex; align-items: center; gap: 3px; font-size: 9px; font-weight: 800; color: var(--accent2); text-transform: uppercase; }
+.tpl-detail { border: 1px solid var(--accent); border-radius: 10px; padding: 14px; background: rgba(0,0,0,0.25); display: flex; flex-direction: column; gap: 12px; }
+.tpl-detail-head { display: flex; align-items: center; gap: 12px; }
+.tpl-detail-head .cb-title { margin: 0; }
+.tpl-meta { display: flex; flex-direction: column; gap: 5px; }
+.tpl-meta-row { display: flex; justify-content: space-between; gap: 12px; font-size: 12px; padding: 4px 0; border-bottom: 1px solid var(--border); }
+.tpl-meta-row span { color: var(--text-dim); text-transform: uppercase; font-size: 10px; letter-spacing: 0.08em; }
+.tpl-meta-row b { text-align: right; }
+.tpl-form { display: flex; flex-direction: column; gap: 6px; }
+.tpl-form input { padding: 8px 10px; border-radius: 6px; font-size: 12px; }
+.tpl-apply { display: inline-flex; align-items: center; justify-content: center; gap: 7px; padding: 11px; border-radius: 8px; border: 1px solid var(--accent); background: rgba(0,243,255,0.12); color: var(--accent); font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: var(--glow); }
+.tpl-apply:hover { box-shadow: var(--glow-hi); }
+
+/* ── Camera Source ───────────────────────────────────────────── */
+.plugin-camera { display: flex; flex-direction: column; gap: 12px; }
+.cam-list { display: flex; flex-direction: column; gap: 5px; }
+.cam-item { display: flex; align-items: center; gap: 6px; }
+.cam-name { flex: 1; display: flex; align-items: center; gap: 7px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 12px; font-weight: 600; cursor: pointer; text-align: left; }
+.cam-name-on { border-color: var(--accent); color: var(--accent); box-shadow: var(--glow); }
+.cam-preview { border: 1px solid var(--accent); border-radius: 8px; overflow: hidden; background: #000; position: relative; }
+.cam-preview img { width: 100%; display: block; min-height: 120px; object-fit: contain; }
+.cam-preview-label { position: absolute; bottom: 6px; left: 8px; font-size: 10px; color: var(--accent); text-shadow: 0 0 6px #000; }
+.cam-add { display: flex; flex-direction: column; gap: 7px; border-top: 1px solid var(--border); padding-top: 10px; }
+.cam-add input { padding: 8px 10px; border-radius: 6px; font-size: 12px; }
+.cam-preset-row { display: flex; gap: 6px; align-items: center; }
+.cam-ip { width: 90px; }

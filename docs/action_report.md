@@ -109,3 +109,31 @@ Dependencies / user actions:
 
 ---
 
+
+## Phase-4 dock endpoints + READMEs + published to GitHub & Codeberg (2026-09-19 22:03)
+
+Status: ✅ TESTED (backend live-verified earlier; Phase-4 endpoints need server restart to activate)
+
+What: Added dock plugin backend endpoints, wrote READMEs, published both repos to GitHub + Codeberg.
+
+Why: Finish the panels that failed gracefully (AI/RSS/Spider) and get the work published to both hosts per user request.
+
+How:
+- nexus_web_server.py: /api/nexus/rss-fetch (RSS/Atom via xml.etree), /spider (link extract via html.parser), /search-web (DuckDuckGo HTML). Zero-dep.
+- AIPlugin.jsx: fixed to POST /api/llm with {provider,model,messages} + per-provider default models.
+- README.md written for protech-studio (dock overview, Captain's Chair, dev/runtime deps).
+- Published: nexus-web-server → GitHub (cf6998d) + Codeberg; protech-studio → NEW GitHub + Codeberg repos (1824cae). Both git mirrors now dual-push via 'git push origin main'. Codeberg repos created via tea CLI (logged in as hackenstacks).
+
+Files:
+- nexus-web-server/nexus_web_server.py (fossil d6419b5)
+- protech-studio/README.md, src/plugins/AIPlugin.jsx (fossil f663993)
+
+Testing: Both build/syntax OK. Aether backend live-verified (403/400 gates, grant/revoke). Phase-4 endpoints (rss/spider/search) return 404 until web server restarted — running PID has pre-Phase-4 code.
+
+Dependencies / user actions:
+- Restart nexus_web_server.py to activate rss-fetch/spider/search-web
+- Browser pass at :8443/studio still pending (can't drive browser from CLI)
+- doas apk add mpd mpc; start icecast/murmur; aichat --serve 3030 for full broadcast
+
+---
+

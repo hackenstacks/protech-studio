@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Plus, ExternalLink, Trash2 } from 'lucide-react';
 
+// Same-origin relative links — no hardcoded host. Works over localhost, LAN IP,
+// .onion or .i2p, whatever the hub is reached through.
 const INTERNAL = [
-  { label: 'NXS-Map',       href: 'https://localhost:8443',       icon: '🗺️' },
-  { label: 'Hister Search', href: 'https://localhost:8443/hister', icon: '🔍' },
-  { label: 'AI Foundry',    href: 'https://localhost:8443/foundry',icon: '⚗️' },
-  { label: 'AI Chat',       href: 'https://localhost:8443/aichat', icon: '🤖' },
-  { label: 'NeXuS Wiki',    href: 'https://localhost:8443/wiki',   icon: '📖' },
-  { label: 'Publisher',     href: 'https://localhost:8443/publish',icon: '📡' },
-  { label: 'Social (snac)', href: 'https://localhost:8443/social', icon: '🦣' },
+  { label: 'NXS-Map',       href: '/',        icon: '🗺️' },
+  { label: 'Hister Search', href: '/hister',  icon: '🔍' },
+  { label: 'AI Foundry',    href: '/foundry', icon: '⚗️' },
+  { label: 'AI Chat',       href: '/aichat',  icon: '🤖' },
+  { label: 'NeXuS Wiki',    href: '/wiki',    icon: '📖' },
+  { label: 'Publisher',     href: '/publish', icon: '📡' },
+  { label: 'Social (snac)', href: '/social',  icon: '🦣' },
 ];
 
 const STORAGE_KEY = 'nexus_studio_bookmarks';

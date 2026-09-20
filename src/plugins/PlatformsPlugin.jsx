@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Plus, Trash2 } from 'lucide-react';
 
+// Same-origin relative links — no hardcoded host.
 const DEFAULT_PLATFORMS = [
-  { id: 'snac',   label: 'snac',   icon: '🦣', href: 'https://localhost:8443/social' },
-  { id: 'matrix', label: 'Matrix', icon: '💬', href: 'https://localhost:8443/matrix' },
+  { id: 'snac',   label: 'snac',   icon: '🦣', href: '/social' },
+  { id: 'matrix', label: 'Matrix', icon: '💬', href: '/matrix' },
 ];
 
 const STORAGE_KEY = 'nexus_studio_platforms';

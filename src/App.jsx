@@ -32,9 +32,13 @@ import { ControlBoardPlugin } from './plugins/ControlBoardPlugin';
 import { RadioPlugin } from './plugins/RadioPlugin';
 import { FiresidePlugin } from './plugins/FiresidePlugin';
 import { CallInPlugin } from './plugins/CallInPlugin';
+import { TemplatesPlugin } from './plugins/TemplatesPlugin';
+import { CameraSourcePlugin } from './plugins/CameraSourcePlugin';
 
 const PLUGIN_COMPONENTS = {
+  templates:    TemplatesPlugin,
   controlboard: ControlBoardPlugin,
+  camera:       CameraSourcePlugin,
   radio:     RadioPlugin,
   fireside:  FiresidePlugin,
   callin:    CallInPlugin,
@@ -312,7 +316,7 @@ export default function ProTechStudio() {
             isOpen={plugins.isOpen(id)}
             onClose={() => plugins.close(id)}
           >
-            <PluginComp plugins={plugins} />
+            <PluginComp plugins={plugins} app={{ setTheme: setThemeKey, setTab: setActiveTab }} />
           </SlidePanel>
         );
       })}

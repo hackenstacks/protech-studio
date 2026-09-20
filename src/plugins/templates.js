@@ -1,0 +1,170 @@
+// Production Templates — each is a starting form AND a studio pre-config.
+// applyTemplate() reads these to set theme, open dock panels, enable broadcast
+// networks, choose publish targets, and pick a TTS voice.
+
+// Publish targets (RTMP ingest = user supplies stream key server-side).
+export const PUBLISH_TARGETS = {
+  twitch:    { label: 'Twitch',    icon: '🟣', kind: 'rtmp', ingest: 'rtmp://live.twitch.tv/app' },
+  youtube:   { label: 'YouTube',   icon: '🔴', kind: 'rtmp', ingest: 'rtmp://a.rtmp.youtube.com/live2' },
+  peertube:  { label: 'PeerTube',  icon: '🟠', kind: 'rtmp', ingest: 'rtmp://peertube.local/live' },
+  rumble:    { label: 'Rumble',    icon: '🟢', kind: 'rtmp', ingest: 'rtmp://live.rumble.com/live' },
+  odysee:    { label: 'Odysee',    icon: '🔵', kind: 'rtmp', ingest: 'rtmp://stream.odysee.com/live' },
+  owncast:   { label: 'Owncast',   icon: '🎥', kind: 'rtmp', ingest: 'rtmp://127.0.0.1:1935/live' },
+  tor:       { label: 'Tor',       icon: '🧅', kind: 'darkweb', network: 'tor' },
+  i2p:       { label: 'I2P',       icon: '🔵', kind: 'darkweb', network: 'i2p' },
+};
+
+// Announce channels (fan-out the stream/post address after going live).
+export const ANNOUNCE_CHANNELS = {
+  matrix:     { label: 'Matrix',     icon: '💬' },
+  snac:       { label: 'snac',       icon: '🦣' },
+  txtnet:     { label: 'twtxt',      icon: '📝' },
+  reticulum:  { label: 'Reticulum',  icon: '📡' },
+  nostr:      { label: 'Nostr',      icon: '🟪' },
+};
+
+// TTS voices (piper). Actual voice model resolved server-side.
+export const TTS_VOICES = ['en_US-amy', 'en_US-ryan', 'en_GB-alba', 'en_US-lessac'];
+
+export const TEMPLATES = [
+  {
+    id: 'blog',
+    label: 'Blog',
+    icon: '✍️',
+    tagline: 'Write and syndicate to the sovereign web.',
+    theme: 'STANDARD',
+    tab: 'terminal',
+    panels: ['notes', 'ai', 'platforms'],
+    networks: [],
+    publish: [],
+    announce: ['txtnet', 'snac', 'matrix'],
+    tts: 'en_US-amy',
+    broadcastMode: false,
+    form: [
+      { name: 'title', label: 'Post title', type: 'text' },
+      { name: 'tags',  label: 'Tags',       type: 'text', placeholder: 'comma,separated' },
+    ],
+  },
+  {
+    id: 'ascii',
+    label: 'ASCII Only',
+    icon: '⌨️',
+    tagline: 'Pure text. Terminal-native. No noise.',
+    theme: 'MATRIX',
+    tab: 'terminal',
+    panels: ['notes'],
+    networks: [],
+    publish: [],
+    announce: ['txtnet'],
+    tts: null,
+    broadcastMode: false,
+    form: [
+      { name: 'title', label: 'Title', type: 'text' },
+    ],
+  },
+  {
+    id: 'podcast',
+    label: 'Podcast',
+    icon: '🎙️',
+    tagline: 'Record, converse, syndicate audio.',
+    theme: 'TRON',
+    tab: 'studio',
+    panels: ['radio', 'fireside', 'callin'],
+    networks: ['activitypub'],
+    publish: ['peertube', 'owncast'],
+    announce: ['matrix', 'snac', 'nostr'],
+    tts: 'en_US-ryan',
+    broadcastMode: false,
+    form: [
+      { name: 'title',   label: 'Episode title', type: 'text' },
+      { name: 'guests',  label: 'Guests',        type: 'text' },
+    ],
+  },
+  {
+    id: 'livestream-callin',
+    label: 'Live Stream + Call-in',
+    icon: '📞',
+    tagline: 'Go live, take callers, run the board.',
+    theme: 'TRON',
+    tab: 'stream',
+    panels: ['controlboard', 'callin', 'fireside'],
+    networks: [],
+    publish: ['owncast', 'youtube'],
+    announce: ['matrix', 'snac'],
+    tts: 'en_US-amy',
+    broadcastMode: true,
+    form: [
+      { name: 'title', label: 'Stream title', type: 'text' },
+    ],
+  },
+  {
+    id: 'gamestream',
+    label: 'Game Stream',
+    icon: '🎮',
+    tagline: 'Max the machine, cast to every platform.',
+    theme: 'TRON',
+    tab: 'stream',
+    panels: ['controlboard', 'fireside'],
+    networks: [],
+    publish: ['twitch', 'youtube', 'peertube', 'rumble', 'odysee'],
+    announce: ['matrix', 'snac', 'nostr'],
+    tts: null,
+    broadcastMode: true,
+    form: [
+      { name: 'title', label: 'Stream title', type: 'text' },
+      { name: 'game',  label: 'Game',         type: 'text' },
+    ],
+  },
+  {
+    id: 'dj-jam',
+    label: 'DJ Jam + Call-in',
+    icon: '🎧',
+    tagline: 'Spin the decks, take requests, bring the noise.',
+    theme: 'MATRIX',
+    tab: 'effects',
+    panels: ['radio', 'controlboard', 'callin', 'eq'],
+    networks: ['activitypub'],
+    publish: ['owncast'],
+    announce: ['matrix', 'snac', 'nostr'],
+    tts: null,
+    broadcastMode: true,
+    form: [
+      { name: 'title', label: 'Set title', type: 'text' },
+    ],
+  },
+  {
+    id: 'coding',
+    label: 'Forge Session',
+    icon: '⚡',
+    tagline: 'The Forge Beyond the CoDe where the code becomes alive.',
+    theme: 'TRON',
+    tab: 'terminal',
+    panels: ['controlboard', 'fireside'],
+    networks: ['nostr'],
+    publish: ['owncast', 'peertube'],
+    announce: ['matrix', 'snac', 'txtnet', 'nostr'],
+    tts: null,
+    broadcastMode: true,
+    form: [
+      { name: 'title',   label: 'Session title', type: 'text' },
+      { name: 'project', label: 'Project',       type: 'text' },
+    ],
+  },
+  {
+    id: 'darkweb',
+    label: 'Darkweb Stream',
+    icon: '🧅',
+    tagline: 'Broadcast off the grid — Tor & I2P delivery.',
+    theme: 'MATRIX',
+    tab: 'stream',
+    panels: ['controlboard', 'fireside', 'networks'],
+    networks: ['tor', 'i2p'],
+    publish: ['tor', 'i2p'],
+    announce: ['matrix', 'snac', 'txtnet', 'reticulum'],
+    tts: null,
+    broadcastMode: true,
+    form: [
+      { name: 'title', label: 'Broadcast title', type: 'text' },
+    ],
+  },
+];

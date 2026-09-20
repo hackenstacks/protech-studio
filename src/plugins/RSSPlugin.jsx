@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { RefreshCw, Plus, ExternalLink, Trash2 } from 'lucide-react';
 
 const DEFAULT_FEEDS = [
-  { id: 1, label: 'NeXuS twtxt', url: 'https://localhost:8443/twtxt.txt' },
+  { id: 1, label: 'NeXuS twtxt', url: '/twtxt.txt' },
   { id: 2, label: 'Hacker News', url: 'https://news.ycombinator.com/rss' },
 ];
 

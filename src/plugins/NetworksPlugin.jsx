@@ -1,15 +1,16 @@
 import { useState } from 'react';
 
+// Same-origin relative links — no hardcoded host.
 const NETWORKS = [
-  { id: 'tor',        label: 'Tor',        icon: '🧅', href: 'https://localhost:8443/nncc' },
-  { id: 'i2p',        label: 'I2P',        icon: '🔵', href: 'https://localhost:8443/nncc' },
+  { id: 'tor',        label: 'Tor',        icon: '🧅', href: '/nncc' },
+  { id: 'i2p',        label: 'I2P',        icon: '🔵', href: '/nncc' },
   { id: 'reticulum',  label: 'Reticulum',  icon: '📡', href: null },
   { id: 'yggdrasil',  label: 'Yggdrasil',  icon: '🌲', href: null },
   { id: 'vpn',        label: 'VPN',        icon: '🔒', href: null },
   { id: 'gemini',     label: 'Gemini',     icon: '♊', href: null },
   { id: 'gopher',     label: 'Gopher',     icon: '🐹', href: null },
-  { id: 'txt',        label: 'twtxt',      icon: '📝', href: 'https://localhost:8443/txt' },
-  { id: 'nncc',       label: 'NCM',        icon: '🕹️', href: 'https://localhost:8443/nncc' },
+  { id: 'txt',        label: 'twtxt',      icon: '📝', href: '/txt' },
+  { id: 'nncc',       label: 'NCM',        icon: '🕹️', href: '/nncc' },
 ];
 
 export function NetworksPlugin() {
