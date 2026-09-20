@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Send, Loader } from 'lucide-react';
 
 const PROVIDERS = [
-  { id: 'mistral',   label: 'Mistral (free)' },
-  { id: 'groq',      label: 'Groq'           },
-  { id: 'deepseek',  label: 'DeepSeek'       },
-  { id: 'cerebras',  label: 'Cerebras'       },
-  { id: 'google',    label: 'Gemini'         },
+  { id: 'mistral',   label: 'Mistral (free)', model: 'mistral-small-latest' },
+  { id: 'groq',      label: 'Groq',           model: 'groq/compound'        },
+  { id: 'deepseek',  label: 'DeepSeek',       model: 'deepseek-chat'        },
+  { id: 'cerebras',  label: 'Cerebras',       model: 'llama3.1-8b'          },
+  { id: 'google',    label: 'Gemini',         model: 'gemini-2.0-flash'     },
 ];
 
 export function AIPlugin() {
@@ -24,10 +24,11 @@ export function AIPlugin() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/llm/chat', {
+      const prov = PROVIDERS.find(p => p.id === provider);
+      const res = await fetch('/api/llm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ provider, messages: history }),
+        body: JSON.stringify({ provider, model: prov?.model, messages: history }),
       });
       const data = await res.json();
       const reply = data.choices?.[0]?.message?.content || data.error || 'No response.';
